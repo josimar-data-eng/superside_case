@@ -1,5 +1,6 @@
 # Table of Contents
 - [Introduction](#introduction)
+- [Why This Project?](#why-this-project?)
 - [Data Architecture](#data-architecture)
 - [Running the Project](#running-the-project)
 - [Project Structure](#project-structure)
@@ -12,6 +13,17 @@
 This documentation is intended to show the program' deliverable, [Challenge](docs/Data%20Engineer%20GenAI-Assesment.pdf), that's a end-to-end process starting from a web-scrapping and using the data gathered as an input for a Generative-AI module to enhance customers' understand traits and identify what is resonating best with them, as well the data architecture, 'How to run' guidance, code structure, some decisions made and final thoughts.<br>
 
 The data gathered is loaded in separate layers - raw, staging, and generative-ai - where in the raw layer, there are the files that came from web-scrapping with no treatment, staging layer, there are files with generative-ai prepared data, and generative-ai layer has the response from the open-ai API.
+<br><br>
+
+# Why This Project? <a name="why-this-project?"></a>
+---
+This project was born with the need to improve the superside' website user experience, in order to cause a fantastic firts impression and as a consequence get more customers.
+
+In a nutshell, this program gets all the Images(img tags in the html code) and Scalable Vector Graphics(svg tags in the html code), that's a format to create two-dimensional graphics and animations, with its respective style attribute, that's like a paint palette, a way for to tell the web browser how we want things to look on the webpage, and make question to a generative AI platform to help us responding how can we improve the image style and how to make the SVG - two-dimensional graphics and animations - responsive to ensure that your styles will adapt well to different screen sizes and devices. 
+
+Imagine the user see the a good web page from a computer, but when he/she access from mobile device the experience get worst? Yeah, That's a bad for the final user!
+
+So, we get each style attribute from the website, use it as input for the Chat GPT, and save theses informations in a database to start the creative proccess of analysing and getting insights from them.
 <br><br>
 
 # Data Architecture <a name="data-architecture"></a>
@@ -297,8 +309,6 @@ superside_case/
 │   │   └── mongodb_ops.py
 │   │   └── remove_files.py
 │   │   └── web_tag_scraper.py
-├── tests/
-│   ├── tests.py
 ├── docs/
 │   ├── pictures
 ├── data/
@@ -317,6 +327,8 @@ superside_case/
 ├── config/
 │   ├── config.ini
 └── README.md
+└── requirements.txt
+└── .gitignore
 ```
 
 # Design Decisions <a name="design-decisions"></a>
@@ -326,8 +338,8 @@ superside_case/
         - Json in the MongoDB.<br>
             - As Json files are hierarchical structure, it's easy to represent the nature of HTML which has parent-child relationships.<br>
             - It's commonnly used by APIs and databases for data exchange, so it will be good when we start to connect to APIs.<br>
-            - Support vaious data types, that accomodate the vast types of data from an HTML.<br>
-            - And as the data will be stored in MongoDB, that's a documented-oriented data model, be a JSON is a optimal choose due to the natural fit for this model. You can store varying data structures within the same collection and JSON support for nesting objects which aligns with MongoDB's ability to store nested documents and arrays.
+            - Support various data types, that accomodate the vast types of data from an HTML.<br>
+            - And as the data will be stored in MongoDB, that's a documented-oriented data model, be a JSON is a optimal choice due to the natural fit for this model. You can store varying data structures within the same collection and JSON support for nesting objects which aligns with MongoDB's ability to store nested documents and arrays.
 
 
 - Scraping<br>
@@ -351,4 +363,5 @@ superside_case/
 ---
 Check about the rate and maximum tokens<br>
 Prompt evaluation<br>
+Create the description for each function
 ...

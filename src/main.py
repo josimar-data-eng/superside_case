@@ -79,7 +79,7 @@ def main():
             time.sleep(60/3)
             gen_dict.__setitem__(prompt, generated_response)
             j+=1
-            if j==2:
+            if j==3:
                 break
 
         conversation_dict = { "conversation":[ {"question":k, "response":v} for k,v in gen_dict.items() ] }
